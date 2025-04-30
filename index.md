@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Christian Galvez - Cybersecurity Portfolio
+title: Christian Galvez - Cyber Portfolio
 ---
 
 # 👋 Hello, I'm Christian Galvez
