@@ -13,3 +13,6 @@ Step-by-step guide for setting up basic security controls in Microsoft Azure.
 
 ## [What is Vulnerability Management?](writeups/vulnerability-management.md)
 A practical look into scanning, triaging, and patching vulnerabilities in IT environments.
+
+
+-[Return](index.md)
