@@ -19,4 +19,4 @@ title: Projects
 - Identified spoofed domains, payload behavior, and recommended mitigations.
 
 
--[Return](index.md)
+[Return](index.md)
