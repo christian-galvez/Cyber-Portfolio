@@ -10,7 +10,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
 - **Location**: Egg Harbor, NJ
 - **Certifications**: Security+, Network+, ITIL v4, AZ-900, ISC2 CC
 - **Degree**: B.S. in Cybersecurity (in progress, WGU)
-- [Download Resume](assets/Christian_Galvez_Resume.pdf)
+- [Download Resume](assets/CG Resume.docx)
 
 ---
 
