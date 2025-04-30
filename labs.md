@@ -13,3 +13,6 @@ Simulated investigation of suspicious login alerts using Splunk demo environment
 
 ## PowerShell Scripting Basics
 Automated user onboarding and permission audits using simple PowerShell scripts.
+
+
+-[Return](index.md)
