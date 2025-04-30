@@ -5,7 +5,7 @@ title: Writeups
 
 # ✍️ Writeups & Blog Posts
 
-## Top 5 Phishing Red Flags
+## [Top 5 Phishing Red Flags](writeups/Top_5_Phishing_Red_Flags)
 Understand common traits of phishing emails and how to defend against them.
 
 ## How to Secure an Azure VM in Under 10 Minutes
