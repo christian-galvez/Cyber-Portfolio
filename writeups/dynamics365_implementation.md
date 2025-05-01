@@ -10,3 +10,6 @@ Throughout multiple Dynamics 365 implementation projects, I served as an **Instr
 - **Supported secure role-based access documentation**, enabling teams to understand permissions and data security within the platform.
 
 These experiences reinforced my ability to translate system complexity into user-friendly formats, while remaining attentive to **security practices and operational compliance**—a foundation that complements my growth in the cybersecurity domain.
+
+
+[Return](../writeups.md)
