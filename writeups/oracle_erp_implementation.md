@@ -10,3 +10,6 @@ As part of a large-scale Oracle ERP implementation, I served as the **Instructio
 - **Gained hands-on insight** into how enterprise systems manage user permissions, sensitive data, and audit trails—core areas of focus in cybersecurity.
 
 This project deepened my appreciation for the intersection of **user enablement, secure system design,** and **enterprise risk management**—insights I continue to build on as I grow in the cybersecurity field.
+
+
+[Return](../writeups.md)
