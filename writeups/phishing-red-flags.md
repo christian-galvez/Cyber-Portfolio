@@ -56,4 +56,4 @@ Be extremely wary of attachments or emails requesting personal, financial, or lo
 - Never download or open unexpected attachments.
 - Report suspicious emails to your IT or security team.
 
-[⬅️ Back to Writeups](writeups.md)
+[⬅️ Back to Writeups](../writeups.md)
