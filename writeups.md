@@ -20,4 +20,7 @@ Developed end-user training for Dynamics 365 CE and F&O modules with a focus on 
 ## [Oracle ERP Implementation – Instructional Design with a Security-Conscious Approach](writeups/oracle_erp_implementation.md)
 Created user training for Oracle ERP while gaining insight into secure system workflows and access controls.
 
+## [Mock NIST CSF Gap Analysis Project](writeups/grc-gap-analysis-project.md)
+Identified and documented security control gaps using the NIST Cybersecurity Framework for a fictional SMB.
+
 [Return](index.md)
