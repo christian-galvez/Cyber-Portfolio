@@ -33,7 +33,7 @@ Core Functions: Identify, Protect, Detect, Respond, Recover
 
 ---
 
-## 📊 Sample Gap Table
+## 📊 Gap Table
 
 | NIST Function | Category             | Example Subcategory                  | Status          | Notes                                      |
 |---------------|----------------------|--------------------------------------|------------------|--------------------------------------------|
