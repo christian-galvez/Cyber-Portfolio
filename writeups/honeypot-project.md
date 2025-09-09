@@ -52,3 +52,5 @@ Cowrie is actively recording brute force attempts and commands from unauthorized
 Logs show attacker usernames, password guesses, and attempted commands.
 
 This provides both educational insight into real-world attack behavior and data I can use for further analysis projects.
+
+## [Return](/projects.md)
