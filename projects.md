@@ -5,7 +5,7 @@ title: Projects
 
 # 🔧 Projects
 
-## [Wireguard VPN on Digital Ocean](assets/vpn-project.md)
+## [Wireguard VPN on Digital Ocean](writeups/vpn-project.md)
 -This project documents the end-to-end deployment of a WireGuard VPN server hosted on a DigitalOcean droplet. I generated and managed key pairs, configured both server and client profiles, and successfully connected multiple devices (iOS and Windows) to securely tunnel internet traffic. The process highlights practical skills in Linux administration, secure networking, and troubleshooting real-world connectivity issues.
 
 ## Vulnerability Assessment Lab (Nmap + OpenVAS)
