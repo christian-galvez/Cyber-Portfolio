@@ -118,9 +118,9 @@ sudo wg
 ### 7. Hardening
 Went a step further by enabling firewall.
 
-sudo ufw allow 22/tcp
-sudo ufw allow 51820/udp
-sudo ufw enable
+- sudo ufw allow 22/tcp
+- sudo ufw allow 51820/udp
+- sudo ufw enable
 
 ---
 
