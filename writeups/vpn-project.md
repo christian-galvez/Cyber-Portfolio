@@ -3,7 +3,7 @@ layout: default
 title: WireGuard VPN on DigitalOcean
 ---
 # 🚀 Project: WireGuard VPN on DigitalOcean
-# 📌 Overview
+## 📌 Overview
 
 This project demonstrates the design, deployment, and configuration of a secure WireGuard VPN server hosted on a DigitalOcean droplet. The VPN allows secure remote access from multiple clients (mobile and laptop), ensuring encrypted traffic tunneling and anonymity while browsing the internet.
 
@@ -63,9 +63,13 @@ Example configuration:
 
 [Interface]
 Address = 10.0.0.1/24
+
 ListenPort = 51820
+
 PrivateKey = <server_private_key>
+
 PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT
+
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; iptables -D INPUT -p tcp --dport 22 -j ACCEPT
 
 ---
@@ -77,13 +81,18 @@ PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACC
 Example: client.conf
 
 [Interface]
+
 PrivateKey = <client_private_key>
+
 Address = 10.0.0.2/24
+
 DNS = 1.1.1.1
 
 [Peer]
 PublicKey = <server_public_key>
+
 Endpoint = <server_ip>:51820
+
 AllowedIPs = 0.0.0.0/0, ::/0
 
 ---
