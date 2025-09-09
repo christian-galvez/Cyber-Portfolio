@@ -50,6 +50,6 @@ Microsoft Azure provides flexible and powerful infrastructure for hosting virtua
 
 ## ✅ Summary
 
-Security isn't optional—it's foundational. By securing your Azure VM immediately after deployment, you significantly reduce your attack surface and improve compliance posture.
+Security isn't optional, it's foundational. By securing your Azure VM immediately after deployment, you significantly reduce your attack surface and improve compliance posture.
 
 [⬅️ Back to Writeups](../writeups.md)
