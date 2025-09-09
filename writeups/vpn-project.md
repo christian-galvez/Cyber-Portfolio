@@ -1,3 +1,7 @@
+---
+layout: default
+title: WireGuard VPN on DigitalOcean
+---
 🚀 Project: WireGuard VPN on DigitalOcean
 📌 Overview
 
