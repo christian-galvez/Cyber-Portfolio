@@ -8,15 +8,10 @@ title: WireGuard VPN on DigitalOcean
 This project demonstrates the design, deployment, and configuration of a secure WireGuard VPN server hosted on a DigitalOcean droplet. The VPN allows secure remote access from multiple clients (mobile and laptop), ensuring encrypted traffic tunneling and anonymity while browsing the internet.
 
 The project showcases my skills in:
-
 Linux server administration
-
 VPN configuration (WireGuard)
-
 SSH management and troubleshooting
-
 Network routing, firewall (iptables), and NAT configuration
-
 Secure client provisioning across devices (iOS + Windows/Linux)
 
 🛠️ Tools & Technologies
