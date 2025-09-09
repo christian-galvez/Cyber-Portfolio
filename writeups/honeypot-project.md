@@ -1,5 +1,5 @@
-# GitHub Project Write-Up
-## Cowrie SSH Honeypot on DigitalOcean
+
+# Cowrie SSH Honeypot on DigitalOcean
 ### Overview
 
 This project involved deploying Cowrie
@@ -23,6 +23,11 @@ This project involved deploying Cowrie
 5. Installed dependencies via requirements.txt inside the venv.
 6. Configured firewall rules and ensured the honeypot port (2222) was exposed externally.
 7. Launched Cowrie and verified it was logging unauthorized attempts.
+
+<img width="624" height="59" alt="Login Attempts to Honeypot" src="https://github.com/user-attachments/assets/80741a88-c0d1-4b9a-9563-c13ad2ed31aa" />
+
+<img width="624" height="157" alt="SSH attempt to honeypot" src="https://github.com/user-attachments/assets/27216cc6-0644-40a7-89aa-9f0371782237" />
+
 
 ---
 
