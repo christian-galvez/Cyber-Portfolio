@@ -28,7 +28,7 @@ The project showcases my skills in:
 ---
 
 ## ⚙️ Implementation Steps
-1. Server Setup
+### 1. Server Setup
 
 Deployed a fresh Ubuntu server on DigitalOcean.
 
@@ -43,7 +43,7 @@ Updated system and installed WireGuard:
 
 ---
 
-2. Key Generation
+### 2. Key Generation
 
 Generated server private/public keys.
 Generated unique private/public keys for each client device.
@@ -55,7 +55,7 @@ Generated unique private/public keys for each client device.
 
 ---
 
-3. Server Configuration (wg0.conf)
+### 3. Server Configuration (wg0.conf)
 
 <img width="966" height="464" alt="image" src="https://github.com/user-attachments/assets/84023782-1d06-4422-8919-0ca61faf497f" />
 
@@ -74,7 +74,7 @@ PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACC
 
 ---
 
-4. Peer Configuration
+### 4. Peer Configuration
 
 - Each client (phone, laptop) was assigned its own configuration file:
 
@@ -97,7 +97,7 @@ AllowedIPs = 0.0.0.0/0, ::/0
 
 ---
 
-5. Client Deployment
+### 5. Client Deployment
 
 Imported the configuration file into the WireGuard mobile app (via QR code).
 
@@ -105,7 +105,7 @@ Imported the configuration into the WireGuard Windows client via .conf file.
 
 ---
 
-6. Validation
+### 6. Validation
 
 Verified handshakes with:
 
@@ -115,7 +115,7 @@ sudo wg
 
 ---
 
-7. Hardening
+### 7. Hardening
 Went a step further by enabling firewall.
 
 sudo ufw allow 22/tcp
