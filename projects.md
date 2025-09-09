@@ -6,20 +6,18 @@ title: Projects
 # 🔧 Projects
 
 ## [Wireguard VPN on Digital Ocean](writeups/vpn-project.md)
--This project documents the end-to-end deployment of a WireGuard VPN server hosted on a DigitalOcean droplet. I generated and managed key pairs, configured both server and client profiles, and successfully connected multiple devices (iOS and Windows) to securely tunnel internet traffic. The process highlights practical skills in Linux administration, secure networking, and troubleshooting real-world connectivity issues.
 
-## Vulnerability Assessment Lab (Nmap + OpenVAS)
-- Scanned a vulnerable VM (Metasploitable) using Nmap and OpenVAS.
-- Documented vulnerabilities and provided remediation steps.
-- Tools: Nmap, OpenVAS, Kali Linux
+- Deployed a secure **WireGuard VPN** on Ubuntu to enable encrypted remote access.  
+- Configured server and client peers with public/private key authentication.  
+- Applied firewall rules to restrict traffic and harden the VPN server.  
+- Validated connectivity by tunneling client traffic securely through the VPN.
 
-## Azure Security Basics
-- Deployed a secure Azure VM with firewall rules and RBAC.
-- Enabled MFA for administrator login and configured backups.
+## [Cowrie Honeypot Deployment & Analysis](writeups/honeypot-project.md)
 
-## Phishing Email Analysis
-- Dissected a mock phishing email using header analysis and sandboxing techniques.
-- Identified spoofed domains, payload behavior, and recommended mitigations.
+- Deployed and configured **Cowrie**, an SSH/Telnet honeypot, on an Ubuntu VPS to capture and analyze unauthorized login attempts.  
+- Troubleshot installation challenges, including Python virtual environment issues and interpreter path errors.  
+- Monitored Cowrie logs to observe real-world brute force attempts and attacker behavior.  
+- Learned how honeypots provide valuable threat intelligence for defensive security strategies.
 
 
 [Return](index.md)
