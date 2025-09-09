@@ -136,3 +136,5 @@ Tested by browsing to https://whatismyipaddress.com and confirming traffic origi
 - Access Control: Each client must have unique keys and AllowedIPs defined, preventing overlaps.
 - SSH Lockout Prevention: Adding explicit iptables rules to keep SSH open prevents accidental lockouts when bringing the VPN interface up.
 - Cross-Device Deployment: Configuring and testing across iPhone + Windows laptop demonstrated real-world secure access scenarios.
+
+[⬅️ Back to Writeups](../writeups.md)
