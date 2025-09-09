@@ -1,11 +1,15 @@
+---
+layout: default
+title: Cowrie SSH Honeypot on DigitalOcean
+---
 
-# Cowrie SSH Honeypot on DigitalOcean
+# 🕵️‍♂️ Cowrie SSH Honeypot on DigitalOcean
 ### Overview
 
 This project involved deploying Cowrie
 , a medium-interaction SSH honeypot, on a DigitalOcean droplet. The honeypot is designed to log brute-force attempts, shell interaction, and file transfers made by unauthorized users.
 
-## Objectives
+## 🎯 Objectives
 
 - Deploy Cowrie in a secure, isolated environment.
 - Capture unauthorized login attempts and attacker activity.
@@ -14,7 +18,7 @@ This project involved deploying Cowrie
 
 ---
 
-## Setup Process
+## 🛠️ Setup Process
 
 1. Provisioned a DigitalOcean Ubuntu 24.04 droplet.
 2. Created a dedicated cowrieuser account (never running Cowrie as root).
@@ -31,7 +35,7 @@ This project involved deploying Cowrie
 
 ---
 
-## Learning Moments / Troubleshooting
+## 🔧 Learning Moments / Troubleshooting
 
 Python packaging restrictions (PEP 668): Ubuntu 24.04 blocks pip installs in system-managed environments. I learned to rebuild the venv properly as a non-root user to avoid externally-managed-environment errors.
 
@@ -41,7 +45,7 @@ Firewall configuration: “Connection timed out” errors highlighted the need t
 
 Logs as validation: Seeing unauthorized SSH attempts appear in Cowrie’s logs confirmed the deployment was successful and actively interacting with attackers.
 
-## Results
+## 📑 Results
 
 Cowrie is actively recording brute force attempts and commands from unauthorized IPs.
 
