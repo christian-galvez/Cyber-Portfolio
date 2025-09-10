@@ -3,6 +3,17 @@ layout: default
 title: Christian Galvez - Cyber Portfolio
 ---
 
+<nav class="navbar">
+  <ul>
+    <li><a href="./index.md">🏠 Home</a></li>
+    <li><a href="./projects.md">💻 Projects</a></li>
+    <li><a href="./writeups.md">📝 Writeups</a></li>
+    <li><a href="./labs.md">🔨 Labs</a></li>
+  </ul>
+</nav>
+
+---
+
 # 👋 Hello, I'm Christian Galvez
 
 Certified and aspiring cybersecurity professional with a foundation in technical support, security documentation, and vulnerability analysis. This portfolio showcases my hands-on skills and knowledge in cybersecurity operations, cloud platforms, and secure system design.
