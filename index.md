@@ -27,69 +27,31 @@ Certified and aspiring cybersecurity professional with a foundation in technical
 
 ## 🌟 Featured Projects  
 
-<div class="project-grid">
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
 
-  <div class="project-card">
-    <a href="writeups/honeypot-project.md" class="thumbnail-link">
-      <div class="thumbnail-container">
-        <img src="assets/honeypot-thumbnail.png" alt="Cowrie Honeypot Screenshot" class="thumbnail">
-        <img src="assets/terminal.png" alt="Terminal Icon" class="icon-overlay">
+  <div style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
+    <a href="writeups/honeypot-project.md" style="text-decoration: none; color: inherit;">
+      <div style="position: relative; display: inline-block;">
+        <img src="assets/honeypot-thumbnail.png" alt="Cowrie Honeypot Screenshot" style="width: 100%; max-width: 250px; border-radius: 12px;">
+        <img src="assets/terminal.png" alt="Terminal Icon" style="position: absolute; top: 10px; right: 10px; width: 40px; background: white; border-radius: 50%; padding: 5px;">
       </div>
     </a>
     <h3>🔒 Cowrie SSH Honeypot</h3>
-    <p>Tracked real-world unauthorized login attempts and learned to troubleshoot Python environments, system paths, and log analysis.</p>
+    <p style="font-size: 14px;">Tracked real-world unauthorized login attempts and learned to troubleshoot Python environments, system paths, and log analysis.</p>
   </div>
 
-  <div class="project-card">
-    <a href="writeups/vpn-project.md" class="thumbnail-link">
-      <div class="thumbnail-container">
-        <img src="assets/Wireguard-thumbnail.png" alt="WireGuard VPN Screenshot" class="thumbnail">
-        <img src="assets/shield.png" alt="Lock Icon" class="icon-overlay">
+  <div style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
+    <a href="writeups/vpn-project.md" style="text-decoration: none; color: inherit;">
+      <div style="position: relative; display: inline-block;">
+        <img src="assets/Wireguard-thumbnail.png" alt="WireGuard VPN Screenshot" style="width: 100%; max-width: 250px; border-radius: 12px;">
+        <img src="assets/shield.png" alt="Lock Icon" style="position: absolute; top: 10px; right: 10px; width: 40px; background: white; border-radius: 50%; padding: 5px;">
       </div>
     </a>
     <h3>🔐 WireGuard VPN with Firewall Hardening</h3>
-    <p>Configured a secure VPN on a cloud server, with added firewall rules for resilience against brute force and scanning attempts.</p>
+    <p style="font-size: 14px;">Configured a secure VPN on a cloud server, with added firewall rules for resilience against brute force and scanning attempts.</p>
   </div>
 
 </div>
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 20px;
-}
-
-.project-card {
-  text-align: center;
-}
-
-.thumbnail-container {
-  position: relative;
-  display: inline-block;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.thumbnail-container:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-.thumbnail {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.icon-overlay {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 40px;
-  height: auto;
-  background: white;
-  border-radius: 50%;
-  padding: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-}
 
 ---
 
