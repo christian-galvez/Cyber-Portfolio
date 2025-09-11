@@ -1,9 +1,9 @@
 ---
-{% include header.html %}
 layout: default
 title: Christian Galvez - Cyber Portfolio
-
 ---
+
+{% include header.html %}
 
 # 👋 Hello, I'm Christian Galvez
 
