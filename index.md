@@ -33,17 +33,17 @@ Certified and aspiring cybersecurity professional with a foundation in technical
       <a href="writeups/honeypot-project.md">
         <div class="thumbnail-wrapper">
           <img src="assets/honeypot-thumbnail.png" alt="Honeypot Project" class="thumbnail">
-          <img src="assets/icon.png" alt="Project Icon" class="icon">
+          <img src="assets/shield.png" alt="Project Icon" class="icon">
         </div>
         <p>Honeypot Project</p>
       </a>
     </div>
 
     <div class="project-card">
-      <a href="writeups/other-project.md">
+      <a href="writeups/vpn-project.md">
         <div class="thumbnail-wrapper">
-          <img src="assets/other-thumbnail.png" alt="Other Project" class="thumbnail">
-          <img src="assets/icon.png" alt="Project Icon" class="icon">
+          <img src="assets/Wireguard-thumbnail.png" alt="Other Project" class="thumbnail">
+          <img src="assets/terminal.png" alt="Project Icon" class="icon">
         </div>
         <p>Other Project</p>
       </a>
