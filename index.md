@@ -25,7 +25,7 @@
       <p>Explore my projects, labs, and certifications.</p>
     </section>
 
-    <div class="project-grid">
+  <div class="project-grid">
   <div class="project-card">
     <a href="writeups/honeypot-project.html">
       <div class="thumbnail-wrapper">
