@@ -27,31 +27,80 @@ Certified and aspiring cybersecurity professional with a foundation in technical
 
 ## 🌟 Featured Projects  
 
-<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+<body>
+  <div class="project-grid">
+    <div class="project-card">
+      <a href="writeups/honeypot-project.md">
+        <div class="thumbnail-wrapper">
+          <img src="assets/honeypot-thumbnail.png" alt="Honeypot Project" class="thumbnail">
+          <img src="assets/icon.png" alt="Project Icon" class="icon">
+        </div>
+        <p>Honeypot Project</p>
+      </a>
+    </div>
 
-  <div style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
-    <a href="writeups/honeypot-project.md" style="text-decoration: none; color: inherit;">
-      <div style="position: relative; display: inline-block;">
-        <img src="assets/honeypot-thumbnail.png" alt="Cowrie Honeypot Screenshot" style="width: 100%; max-width: 250px; border-radius: 12px;">
-        <img src="assets/terminal.png" alt="Terminal Icon" style="position: absolute; top: 10px; right: 10px; width: 40px; background: white; border-radius: 50%; padding: 5px;">
-      </div>
-    </a>
-    <h3>🔒 Cowrie SSH Honeypot</h3>
-    <p style="font-size: 14px;">Tracked real-world unauthorized login attempts and learned to troubleshoot Python environments, system paths, and log analysis.</p>
+    <div class="project-card">
+      <a href="writeups/other-project.md">
+        <div class="thumbnail-wrapper">
+          <img src="assets/other-thumbnail.png" alt="Other Project" class="thumbnail">
+          <img src="assets/icon.png" alt="Project Icon" class="icon">
+        </div>
+        <p>Other Project</p>
+      </a>
+    </div>
   </div>
+</body>
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <style>
+    .project-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-  <div style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
-    <a href="writeups/vpn-project.md" style="text-decoration: none; color: inherit;">
-      <div style="position: relative; display: inline-block;">
-        <img src="assets/Wireguard-thumbnail.png" alt="WireGuard VPN Screenshot" style="width: 100%; max-width: 250px; border-radius: 12px;">
-        <img src="assets/shield.png" alt="Lock Icon" style="position: absolute; top: 10px; right: 10px; width: 40px; background: white; border-radius: 50%; padding: 5px;">
-      </div>
-    </a>
-    <h3>🔐 WireGuard VPN with Firewall Hardening</h3>
-    <p style="font-size: 14px;">Configured a secure VPN on a cloud server, with added firewall rules for resilience against brute force and scanning attempts.</p>
-  </div>
+    .project-card {
+      position: relative;
+      width: 250px;
+      text-align: center;
+    }
 
-</div>
+    .thumbnail-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .thumbnail {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .thumbnail-wrapper:hover .icon {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .project-card p {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
 
 ---
 
