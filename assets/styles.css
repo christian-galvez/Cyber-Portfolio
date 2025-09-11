@@ -83,3 +83,16 @@
   color: #003366;
 }
 
+.project-card {
+  width: 200px !important;
+}
+
+.thumbnail {
+  height: 150px !important;
+}
+
+.icon {
+  width: 35px !important;
+  height: 35px !important;
+}
+
