@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -25,26 +25,28 @@
       <p>Explore my projects, labs, and certifications.</p>
     </section>
 
-    <section class="projects">
-      <div class="project-card">
-        <a href="writeups/honeypot-project.html">
-          <div class="thumbnail-wrapper">
-            <img src="assets/honeypot-thumbnail.png" alt="Honeypot Project" class="thumbnail">
-            <img src="assets/terminal.png" alt="Project Icon" class="icon">
-          </div>
-          <p>Honeypot Project</p>
-        </a>
+    <div class="project-grid">
+  <div class="project-card">
+    <a href="writeups/honeypot-project.html">
+      <div class="thumbnail-wrapper">
+        <img src="assets/honeypot-thumbnail.png" alt="Honeypot Project" class="thumbnail">
+        <img src="assets/shield.png" alt="Project Icon" class="icon">
       </div>
+      <p>Honeypot Project</p>
+    </a>
+  </div>
 
-      <div class="project-card">
-        <a href="writeups/vpn-project.html">
-          <div class="thumbnail-wrapper">
-            <img src="assets/Wireguard-thumbnail.png" alt="Wireguard VPN Project" class="thumbnail">
-            <img src="assets/shield.png" alt="Project Icon" class="icon">
-          </div>
-          <p>Wireguard VPN Project</p>
-        </a>
+  <div class="project-card">
+    <a href="writeups/vpn-project.html">
+      <div class="thumbnail-wrapper">
+        <img src="assets/Wireguard-thumbnail.png" alt="Wireguard VPN Project" class="thumbnail">
+        <img src="assets/terminal.png" alt="Project Icon" class="icon">
       </div>
+      <p>Other Project</p>
+    </a>
+  </div>
+</div>
+
     </section>
   </main>
 
