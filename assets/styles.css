@@ -1,0 +1,30 @@
+.navbar {
+  position: sticky; /* or fixed */
+  top: 0;
+  width: 100%;
+  background-color: #1a1a1a; /* dark background */
+  z-index: 1000; /* make sure it stays on top */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.navbar nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 20px;
+  justify-content: flex-start;
+}
+
+.navbar nav ul li {
+  margin-right: 20px;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar nav ul li a:hover {
+  text-decoration: underline;
+}
