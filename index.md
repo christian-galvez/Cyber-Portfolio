@@ -1,16 +1,7 @@
 ---
+{% include header.html %}
 layout: default
 title: Christian Galvez - Cyber Portfolio
----
-
-<nav class="navbar">
-  <ul>
-    <li><a href="./index.md">🏠 Home</a></li>
-    <li><a href="./projects.md">💻 Projects</a></li>
-    <li><a href="./writeups.md">📝 Writeups</a></li>
-    <li><a href="./labs.md">🔨 Labs</a></li>
-  </ul>
-</nav>
 
 ---
 
