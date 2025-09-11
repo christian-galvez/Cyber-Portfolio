@@ -30,7 +30,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
 <body>
   <div class="project-grid">
     <div class="project-card">
-      <a href="writeups/honeypot-project.md">
+      <a href="writeups/honeypot-project.html">
         <div class="thumbnail-wrapper">
           <img src="assets/honeypot-thumbnail.png" alt="Honeypot Project" class="thumbnail">
           <img src="assets/shield.png" alt="Project Icon" class="icon">
@@ -40,7 +40,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
     </div>
 
    <div class="project-card">
-      <a href="writeups/vpn-project.md">
+      <a href="writeups/vpn-project.html">
         <div class="thumbnail-wrapper">
           <img src="assets/Wireguard-thumbnail.png" alt="Other Project" class="thumbnail">
           <img src="assets/terminal.png" alt="Project Icon" class="icon">
