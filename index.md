@@ -32,7 +32,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
   <div class="project-card">
     <a href="./projects/cowrie-honeypot.md">
       <img src="./images/cowrie-thumb.png" alt="Cowrie Honeypot Screenshot" class="thumbnail">
-      <img src="assets/terminal.png" alt="Terminal Icon" class="icon">
+      <img src="assets/terminal.png" alt="Terminal Icon" class="icon" style="width:40px;">
     </a>
     <h3>🔒 Cowrie SSH Honeypot</h3>
     <p>Tracked real-world unauthorized login attempts and learned to troubleshoot Python environments, system paths, and log analysis.</p>
