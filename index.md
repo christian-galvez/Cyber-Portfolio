@@ -31,7 +31,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
 
   <div class="project-card">
     <a href="./projects/cowrie-honeypot.md">
-      <img src="./images/cowrie-thumb.png" alt="Cowrie Honeypot Screenshot" class="thumbnail">
+      <img src="assets/honeypot-thumbnail.png" alt="Cowrie Honeypot Screenshot" class="thumbnail">
       <img src="assets/terminal.png" alt="Terminal Icon" class="icon" style="width:40px;">
     </a>
     <h3>🔒 Cowrie SSH Honeypot</h3>
@@ -40,7 +40,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
 
   <div class="project-card">
     <a href="./projects/wireguard-vpn.md">
-      <img src="./images/wireguard-thumb.png" alt="WireGuard VPN Screenshot" class="thumbnail">
+      <img src="assets/Wireguard-thumbnail.png" alt="WireGuard VPN Screenshot" class="thumbnail">
       <img src="assets/shield.png" alt="Lock Icon" class="icon" style="width:40px;">
     </a>
     <h3>🔐 WireGuard VPN with Firewall Hardening</h3>
