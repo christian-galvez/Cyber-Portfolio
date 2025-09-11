@@ -39,7 +39,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
       </a>
     </div>
 
-    <div class="project-card">
+   <div class="project-card">
       <a href="writeups/vpn-project.md">
         <div class="thumbnail-wrapper">
           <img src="assets/Wireguard-thumbnail.png" alt="Other Project" class="thumbnail">
@@ -54,50 +54,59 @@ Certified and aspiring cybersecurity professional with a foundation in technical
   <meta charset="UTF-8">
   <title>My Portfolio</title>
   <style>
-    .project-grid {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 20px;
-    }
 
-    .project-card {
-      position: relative;
-      width: 250px;
-      text-align: center;
-    }
+  .project-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch; /* ensures all cards have same height */
+  margin-top: 20px;
+}
 
-    .thumbnail-wrapper {
-      position: relative;
-      width: 100%;
-    }
+.project-card {
+  position: relative;
+  width: 250px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* stack thumbnail + caption */
+  justify-content: space-between; /* keeps spacing even */
+}
 
-    .thumbnail {
-      width: 100%;
-      display: block;
-      border-radius: 8px;
-    }
+.thumbnail-wrapper {
+  position: relative;
+  width: 100%;
+  flex-grow: 1; /* allows thumbnails to fill same height */
+}
 
-    .icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+.thumbnail {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  height: 200px; /* force all thumbnails same height */
+  object-fit: cover; /* maintains aspect ratio without stretching */
+}
 
-    .thumbnail-wrapper:hover .icon {
-      opacity: 1;
-      cursor: pointer;
-    }
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-    .project-card p {
-      margin-top: 10px;
-      font-weight: bold;
-    }
+.thumbnail-wrapper:hover .icon {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.project-card p {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
   </style>
 </head>
 
