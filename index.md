@@ -41,7 +41,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
   <div class="project-card">
     <a href="./projects/wireguard-vpn.md">
       <img src="./images/wireguard-thumb.png" alt="WireGuard VPN Screenshot" class="thumbnail">
-      <img src="./icons/lock-icon.png" alt="Lock Icon" class="icon">
+      <img src="assets/shield.png" alt="Lock Icon" class="icon">
     </a>
     <h3>🔐 WireGuard VPN with Firewall Hardening</h3>
     <p>Configured a secure VPN on a cloud server, with added firewall rules for resilience against brute force and scanning attempts.</p>
