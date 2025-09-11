@@ -45,7 +45,7 @@ Certified and aspiring cybersecurity professional with a foundation in technical
           <img src="assets/Wireguard-thumbnail.png" alt="Other Project" class="thumbnail">
           <img src="assets/terminal.png" alt="Project Icon" class="icon">
         </div>
-        <p>Other Project</p>
+        <p>Wireguard VPN Project</p>
       </a>
     </div>
   </div>
