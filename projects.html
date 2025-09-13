@@ -1,20 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Christian Galvez</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
+    <section class="hero">
+      <h1>My Cybersecurity Projects</h1>
+      <p>Explore the labs and projects that showcase my hands-on skills in cybersecurity.</p>
+    </section>
 
-# 🔧 Projects
+    <section class="projects">
+      <div class="project-card">
+        <a href="projects/honeypot.html">
+          <div class="thumbnail-wrapper">
+            <img src="assets/honeypot-thumbnail.jpg" alt="Honeypot Project" class="thumbnail">
+            <img src="assets/icon.png" alt="Project Icon" class="icon">
+          </div>
+          <p>Cowrie Honeypot Project</p>
+        </a>
+      </div>
 
-## [Wireguard VPN on Digital Ocean](writeups/vpn-project.html)
+      <div class="project-card">
+        <a href="projects/metasploitable.html">
+          <div class="thumbnail-wrapper">
+            <img src="assets/metasploitable-thumbnail.jpg" alt="Metasploitable Lab" class="thumbnail">
+            <img src="assets/icon.png" alt="Project Icon" class="icon">
+          </div>
+          <p>Metasploitable Pentesting Lab</p>
+        </a>
+      </div>
 
-- Deployed a secure **WireGuard VPN** on Ubuntu to enable encrypted remote access.  
-- Configured server and client peers with public/private key authentication.  
-- Applied firewall rules to restrict traffic and harden the VPN server.  
-- Validated connectivity by tunneling client traffic securely through the VPN.
+      <div class="project-card">
+        <a href="projects/vpn.html">
+          <div class="thumbnail-wrapper">
+            <img src="assets/vpn-thumbnail.jpg" alt="WireGuard VPN" class="thumbnail">
+            <img src="assets/icon.png" alt="Project Icon" class="icon">
+          </div>
+          <p>WireGuard VPN Setup</p>
+        </a>
+      </div>
+    </section>
+  </main>
 
-## [Cowrie Honeypot Deployment & Analysis](writeups/honeypot-project.html)
-
-- Deployed and configured **Cowrie**, an SSH/Telnet honeypot, on an Ubuntu VPS to capture and analyze unauthorized login attempts.  
-- Troubleshot installation challenges, including Python virtual environment issues and interpreter path errors.  
-- Monitored Cowrie logs to observe real-world brute force attempts and attacker behavior.  
-- Learned how honeypots provide valuable threat intelligence for defensive security strategies.
-
-
-[Return](index.md)
+  <footer>
+    <p>© 2025 Christian Galvez</p>
+  </footer>
+</body>
+</html>
