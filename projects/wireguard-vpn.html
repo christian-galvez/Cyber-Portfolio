@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WireGuard VPN Setup - Christian Galvez</title>
+  <title>WireGuard VPN on DigitalOcean - Christian Galvez</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <style>
-    main { max-width:900px; margin:30px auto; padding:0 20px; }
-    pre { background:#f3f4f6; padding:12px; overflow:auto; border-radius:6px; }
-    .artifact-list a { color:#003366; }
-    .note { color:#555; font-style:italic; margin-top:6px; }
+    main { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    h1, h2, h3 { color: #003366; }
+    pre { background: #f3f4f6; padding: 12px; border-radius: 6px; overflow-x: auto; }
+    img { display: block; margin: 15px auto; max-width: 100%; border: 1px solid #ddd; border-radius: 6px; }
+    ul, ol { margin-left: 20px; }
+    .back-link { display: block; margin-top: 40px; }
   </style>
 </head>
 <body>
@@ -26,115 +28,108 @@
   </header>
 
   <main>
-    <section class="hero">
-      <h1>WireGuard VPN: Home Lab Setup</h1>
-      <p><strong>One-line summary:</strong> Secure, lightweight VPN using WireGuard for remote access to homelab resources and secure tunnel testing.</p>
-    </section>
+    <h1>🚀 Project: WireGuard VPN on DigitalOcean</h1>
 
-    <section>
-      <p class="meta"><strong>Role:</strong> Network engineer / lab admin &nbsp; | &nbsp; <strong>Tools:</strong> WireGuard, Ubuntu 22.04, systemd, iptables/nftables, systemd-resolved, public host (optional)</p>
-    </section>
+    <h2>📌 Overview</h2>
+    <p>
+      This project demonstrates the design, deployment, and configuration of a secure WireGuard VPN server hosted on a DigitalOcean droplet.
+      The VPN allows secure remote access from multiple clients (mobile and laptop), ensuring encrypted traffic tunneling and anonymity while browsing the internet.
+    </p>
 
-    <section>
-      <h2>Objective</h2>
-      <p>Implement WireGuard server to provide secure remote access to homelab VMs, test routing rules, and document configuration for repeatable deployments.</p>
-    </section>
+    <p>The project showcases my skills in:</p>
+    <ul>
+      <li>Linux server administration</li>
+      <li>VPN configuration (WireGuard)</li>
+      <li>SSH management and troubleshooting</li>
+      <li>Network routing, firewall (iptables), and NAT configuration</li>
+      <li>Secure client provisioning across devices (iOS + Windows/Linux)</li>
+    </ul>
 
-    <section>
-      <h2>Topology</h2>
-      <pre>
-Public host (cloud or home router) -- (UDP 51820) --> WireGuard server (10.9.0.1)
-Client device(s) (10.9.0.2+) --> WireGuard tunnel --> access homelab networks (e.g., 192.168.56.0/24)
-      </pre>
-      <p class="note">Use NAT + firewall rules to control access between tunnel and lab networks. Keep management services separate.</p>
-    </section>
+    <h2>🛠️ Tools & Technologies</h2>
+    <ul>
+      <li>DigitalOcean Droplet (Ubuntu 22.04 LTS)</li>
+      <li>WireGuard VPN</li>
+      <li>iOS WireGuard App</li>
+      <li>Windows WireGuard Client</li>
+      <li>SSH (OpenSSH)</li>
+      <li>iptables for firewall and NAT rules</li>
+    </ul>
 
-    <section>
-      <h2>Installation & config (server)</h2>
-      <ol>
-        <li>Install WireGuard:
-          <pre><code>sudo apt update
-sudo apt install -y wireguard iptables</code></pre>
-        </li>
-        <li>Generate keys:
-          <pre><code>wg genkey | tee server_private.key | wg pubkey > server_public.key
+    <h2>⚙️ Implementation Steps</h2>
+
+    <h3>1. Server Setup</h3>
+    <p>Deployed a fresh Ubuntu server on DigitalOcean.</p>
+    <img src="../assets/wg-setup-1.png" alt="Ubuntu setup screenshot" />
+
+    <p>Updated system and installed WireGuard:</p>
+    <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install wireguard -y</code></pre>
+    <img src="../assets/wg-setup-2.png" alt="WireGuard installation screenshot" />
+
+    <h3>2. Key Generation</h3>
+    <p>Generated server private/public keys. Generated unique private/public keys for each client device.</p>
+    <pre><code>wg genkey | tee server_private.key | wg pubkey > server_public.key
 wg genkey | tee client_private.key | wg pubkey > client_public.key</code></pre>
-        </li>
-        <li>Create `/etc/wireguard/wg0.conf` (example):
-          <pre><code>[Interface]
-Address = 10.9.0.1/24
+    <img src="../assets/wg-keys.png" alt="Key generation screenshot" />
+
+    <h3>3. Server Configuration (wg0.conf)</h3>
+    <img src="../assets/wg-config.png" alt="wg0.conf screenshot" />
+    <pre><code>[Interface]
+Address = 10.0.0.1/24
 ListenPort = 51820
-PrivateKey = <server_private_key>
-SaveConfig = true
+PrivateKey = &lt;server_private_key&gt;
 
-[Peer]
-PublicKey = <client_public_key>
-AllowedIPs = 10.9.0.2/32, 192.168.56.0/24
-</code></pre>
-        </li>
-        <li>Enable IP forwarding and start WireGuard:
-          <pre><code>sudo sysctl -w net.ipv4.ip_forward=1
-sudo systemctl enable wg-quick@wg0
-sudo systemctl start wg-quick@wg0</code></pre>
-        </li>
-        <li>Firewall NAT (example using iptables):
-          <pre><code>sudo iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -o eth0 -j MASQUERADE</code></pre>
-        </li>
-      </ol>
-    </section>
+PostUp   = iptables -A FORWARD -i %i -j ACCEPT; \
+           iptables -A FORWARD -o %i -j ACCEPT; \
+           iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; \
+           iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT
 
-    <section>
-      <h2>Client config (sample)</h2>
-      <pre><code>[Interface]
-PrivateKey = <client_private_key>
-Address = 10.9.0.2/32
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; \
+           iptables -D FORWARD -o %i -j ACCEPT; \
+           iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; \
+           iptables -D INPUT -p tcp --dport 22 -j ACCEPT</code></pre>
+
+    <h3>4. Peer Configuration</h3>
+    <p>Each client (phone, laptop) was assigned its own configuration file.</p>
+    <pre><code>[Interface]
+PrivateKey = &lt;client_private_key&gt;
+Address = 10.0.0.2/24
 DNS = 1.1.1.1
 
 [Peer]
-PublicKey = <server_public_key>
-Endpoint = public.host.example:51820
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 25
-</code></pre>
-      <p class="note">Adjust `AllowedIPs` to limit routes to the lab subnets if you do not want full-tunnel VPN.</p>
-    </section>
+PublicKey = &lt;server_public_key&gt;
+Endpoint = &lt;server_ip&gt;:51820
+AllowedIPs = 0.0.0.0/0, ::/0</code></pre>
 
-    <section>
-      <h2>Verification & testing</h2>
-      <ol>
-        <li>Check interface: <pre><code>sudo wg show</code></pre></li>
-        <li>Test connectivity: <pre><code>ping 10.9.0.1
-ping 192.168.56.10</code></pre></li>
-        <li>Confirm routing and access to lab services (SSH, web interfaces) from client.</li>
-      </ol>
-    </section>
+    <h3>5. Client Deployment</h3>
+    <p>Imported the configuration file into the WireGuard mobile app (via QR code).</p>
+    <p>Imported the configuration into the WireGuard Windows client via .conf file.</p>
 
-    <section>
-      <h2>Common issues & troubleshooting</h2>
-      <ul>
-        <li>Endpoint or NAT issues: ensure UDP 51820 forwarded if behind home router</li>
-        <li>Firewall rules blocking traffic: verify iptables/nftables rules</li>
-        <li>Key mismatch: confirm public/private keys are correct and no extra whitespace</li>
-      </ul>
-    </section>
+    <h3>6. Validation</h3>
+    <p>Verified handshakes with:</p>
+    <pre><code>sudo wg</code></pre>
+    <img src="../assets/wg-validation.png" alt="Validation screenshot" />
 
-    <section>
-      <h2>Artifacts</h2>
-      <ul class="artifact-list">
-        <li><a href="../assets/wg0.conf" target="_blank">Example wg0.conf (upload)</a></li>
-        <li><a href="../assets/wireguard-setup-notes.txt" target="_blank">Setup notes (txt)</a></li>
-      </ul>
-      <p>Upload these files into <code>/assets</code> and make sure names match the links above or update them.</p>
-    </section>
+    <h3>7. Hardening</h3>
+    <p>Enabled firewall with UFW:</p>
+    <pre><code>sudo ufw allow 22/tcp
+sudo ufw allow 51820/udp
+sudo ufw enable</code></pre>
+    <p>Confirmed both devices appeared as connected peers. Tested by browsing to 
+      <a href="https://whatismyipaddress.com" target="_blank">whatismyipaddress.com</a>
+      and confirming traffic originated from the VPN server’s IP.
+    </p>
 
-    <section>
-      <h2>TL;DR</h2>
-      <ul>
-        <li>Implemented WireGuard for secure homelab access with documented server and client configs.</li>
-        <li>Includes troubleshooting notes and artifacts for repeatable setup.</li>
-        <li>Configured routing and NAT to enable safe access to isolated lab networks.</li>
-      </ul>
-    </section>
+    <h2>🔐 Lessons Learned</h2>
+    <ul>
+      <li><strong>Firewall:</strong> Implementing WireGuard VPN highlighted the critical importance of firewall hardening to minimize attack surfaces.</li>
+      <li><strong>Routing/NAT:</strong> Proper PostUp and PostDown rules are critical for allowing VPN clients to reach the internet.</li>
+      <li><strong>Access Control:</strong> Each client must have unique keys and AllowedIPs defined, preventing overlaps.</li>
+      <li><strong>SSH Lockout Prevention:</strong> Adding explicit iptables rules to keep SSH open prevents accidental lockouts.</li>
+      <li><strong>Cross-Device Deployment:</strong> Configuring and testing across iPhone + Windows laptop demonstrated real-world secure access scenarios.</li>
+    </ul>
+
+    <p class="back-link"><a href="../projects.html">⬅️ Back to Projects</a></p>
   </main>
 
   <footer>
