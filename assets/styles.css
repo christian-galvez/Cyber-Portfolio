@@ -156,3 +156,31 @@ img {
   margin-top: 0;
   color: #003366;
 }
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #003366, #00509e);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.hero .btn {
+  background: white;
+  color: #003366;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+.hero .btn:hover {
+  background: #eee;
+}
