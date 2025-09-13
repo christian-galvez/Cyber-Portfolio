@@ -59,21 +59,21 @@
 
     <h3>1. Server Setup</h3>
     <p>Deployed a fresh Ubuntu server on DigitalOcean.</p>
-    <img src="../assets/wg-setup-1.png" alt="Ubuntu setup screenshot" />
+    <img src="https://github.com/user-attachments/assets/142f5eee-2629-491c-98b6-c0c0bb5c6702" alt="Server setup screenshot" style="max-width:100%; border: 1px solid #ccc; border-radius: 6px;" />
 
     <p>Updated system and installed WireGuard:</p>
     <pre><code>sudo apt update && sudo apt upgrade -y
 sudo apt install wireguard -y</code></pre>
-    <img src="../assets/wg-setup-2.png" alt="WireGuard installation screenshot" />
+    <img src="https://github.com/user-attachments/assets/84fa5a7f-7d0d-4137-baca-7067353a3527" alt="WireGuard install screenshot" style="max-width:100%; border: 1px solid #ccc; border-radius: 6px;" />
 
     <h3>2. Key Generation</h3>
     <p>Generated server private/public keys. Generated unique private/public keys for each client device.</p>
     <pre><code>wg genkey | tee server_private.key | wg pubkey > server_public.key
 wg genkey | tee client_private.key | wg pubkey > client_public.key</code></pre>
-    <img src="../assets/wg-keys.png" alt="Key generation screenshot" />
+    <img src="https://github.com/user-attachments/assets/5c94b78f-abb2-4d3e-bb3a-e962d7b7d1de" alt="Key generation screenshot" style="max-width:100%; border: 1px solid #ccc; border-radius: 6px;" />
 
     <h3>3. Server Configuration (wg0.conf)</h3>
-    <img src="../assets/wg-config.png" alt="wg0.conf screenshot" />
+    <img src="https://github.com/user-attachments/assets/84023782-1d06-4422-8919-0ca61faf497f" alt="wg0.conf server configuration screenshot" style="max-width:100%; border: 1px solid #ccc; border-radius: 6px;" />
     <pre><code>[Interface]
 Address = 10.0.0.1/24
 ListenPort = 51820
@@ -108,7 +108,7 @@ AllowedIPs = 0.0.0.0/0, ::/0</code></pre>
     <h3>6. Validation</h3>
     <p>Verified handshakes with:</p>
     <pre><code>sudo wg</code></pre>
-    <img src="../assets/wg-validation.png" alt="Validation screenshot" />
+    <img src="https://github.com/user-attachments/assets/4c95e5e4-02a7-4af3-a0e6-819e55e657aa" alt="Validation with sudo wg screenshot" style="max-width:100%; border: 1px solid #ccc; border-radius: 6px;" />
 
     <h3>7. Hardening</h3>
     <p>Enabled firewall with UFW:</p>
