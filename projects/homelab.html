@@ -1,1 +1,138 @@
-h
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Homelab Build Guide - Christian Galvez</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    /* Page-specific minor tweaks */
+    main { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    .artifact-list a { color: #003366; }
+    pre { background:#f3f4f6; padding:12px; overflow:auto; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <!-- Navbar (links assume index.html, about.html etc are at repository root) -->
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Homelab: Build Guide (Oracle VM)</h1>
+      <p><strong>One-line summary:</strong> Reproducible homelab setup using Oracle VM VirtualBox to run isolated test networks for pentesting, detection testing, and training.</p>
+    </section>
+
+    <section>
+      <h2>Role, timeframe, tools</h2>
+      <ul>
+        <li>Role: Lab architect / systems engineer</li>
+        <li>Timeframe: 2 weeks (initial build)</li>
+        <li>Tools: Oracle VM VirtualBox, Vagrant (optional), Linux (Ubuntu 22.04), Windows 10, pfSense, WireGuard, Docker, Ansible (automation snippets)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Objective</h2>
+      <p>Deliver a reproducible, segmented homelab for offensive and defensive testing: attacker VLAN, target VLAN, management host, and simulated internet (NAT). Provide hardening steps and automation snippets so others can reproduce safely.</p>
+    </section>
+
+    <section>
+      <h2>Topology (high level)</h2>
+      <p>Simple topology:</p>
+      <pre>
+Attacker (Kali) -- Host-only net 192.168.56.0/24
+Target VMs (Metasploitable, Win7) -- Host-only net 192.168.56.0/24
+Management (host) -- NAT to internet
+Optional pfSense VM controls routing between NAT/host-only networks
+      </pre>
+      <p>If you prefer an image, add <code>assets/homelab-topology.png</code> and link it here.</p>
+    </section>
+
+    <section>
+      <h2>Step-by-step (essential)</h2>
+      <ol>
+        <li>Create host-only network in VirtualBox (example): <pre><code>VBoxManage hostonlyif create
+VBoxManage hostonlyif ipconfig vboxnet0 --ip 192.168.56.1</code></pre></li>
+
+        <li>Import VM images / ISO:
+          <ul>
+            <li>Ubuntu Server 22.04 (as management/utility)</li>
+            <li>Kali Linux (attacker)</li>
+            <li>Metasploitable (target)</li>
+            <li>pfSense (router, optional)</li>
+          </ul>
+        </li>
+
+        <li>Configure VM NICs:
+          <pre><code> # Example VirtualBox NIC setup (attach 1: NAT, 2: Host-only)
+VBoxManage modifyvm "Kali" --nic1 nat --nic2 hostonly --hostonlyadapter2 vboxnet0
+          </code></pre>
+        </li>
+
+        <li>Basic hardening checklist:
+          <ul>
+            <li>Disable unnecessary services on management VMs</li>
+            <li>Snapshot golden images: `VBoxManage snapshot <vm> take "clean_install"`</li>
+            <li>Use host-only networks for lab traffic</li>
+            <li>Restrict host firewall rules so lab traffic cannot escape unintended networks</li>
+          </ul>
+        </li>
+
+        <li>Automation example (Ansible playbook snippet that updates packages):
+          <pre><code>- hosts: homelab
+  become: true
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+    - name: Upgrade packages
+      apt:
+        upgrade: dist</code></pre>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Findings and recommended baseline</h2>
+      <p>Key takeaways for a usable homelab:</p>
+      <ul>
+        <li>Keep attack and target networks logically separated with host-only adapters; expose only required services</li>
+        <li>Use snapshots before risky exercises to revert quickly</li>
+        <li>Document IP addressing and services in each VM; include a README per VM</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Artifacts / downloads</h2>
+      <ul class="artifact-list">
+        <li><a href="../assets/homelab-topology.png" target="_blank">Topology diagram (upload to assets)</a> — recommended</li>
+        <li><a href="../assets/homelab-ansible.zip" target="_blank">Ansible snippets (zip)</a> — upload optional</li>
+        <li><a href="../assets/homelab-readme.txt" target="_blank">Homelab README (text)</a></li>
+      </ul>
+      <p>Upload these files into the <code>/assets</code> folder and update the links if you rename them.</p>
+    </section>
+
+    <section>
+      <h2>TL;DR for hiring managers</h2>
+      <ul>
+        <li>Built an isolated, reproducible homelab with VirtualBox, snapshots, and automation</li>
+        <li>Documented topology, hardening steps, and reproduction commands suitable for interviews or demonstrations</li>
+        <li>Artifacts included for quick review and replay</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Christian Galvez</p>
+  </footer>
+</body>
+</html>
