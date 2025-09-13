@@ -1,3 +1,32 @@
+/* ---------------------- Global Page Styles ---------------------- */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header, main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #003366;
+}
+
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* ---------------------- Navbar ---------------------- */
 .navbar {
   position: sticky;
   top: 0;
@@ -28,12 +57,10 @@
 .navbar nav ul li a:hover {
   background-color: #00509e; /* lighter navy blue */
   border-radius: 4px;
-}
-
-.navbar nav ul li a:hover {
   text-decoration: underline;
 }
 
+/* ---------------------- Projects & Thumbnails ---------------------- */
 .projects {
   display: flex;
   justify-content: center;
@@ -44,11 +71,11 @@
 
 .project-card {
   position: relative;
-  width: 250px;
+  width: 200px !important;
   text-align: center;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #f9f9f9; /* light background inside card */
+  background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -61,7 +88,7 @@
 
 .thumbnail {
   width: 100%;
-  height: 200px;
+  height: 150px !important;
   object-fit: cover;
   display: block;
 }
@@ -71,8 +98,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
+  width: 35px !important;
+  height: 35px !important;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -88,16 +115,17 @@
   color: #003366;
 }
 
-.project-card {
-  width: 200px !important;
+/* ---------------------- Back Link / CTA Button ---------------------- */
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 12px;
+  background: #003366; /* Navy blue */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
-.thumbnail {
-  height: 150px !important;
+.back-link:hover {
+  background: #00509e; /* Slightly lighter on hover */
 }
-
-.icon {
-  width: 35px !important;
-  height: 35px !important;
-}
-
