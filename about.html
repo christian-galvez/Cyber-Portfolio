@@ -5,10 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Christian Galvez</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* About page specific styles */
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .headshot {
+      flex: 0 0 150px;      /* Fixed width */
+      height: 150px;
+      border-radius: 50%;   /* Circular crop */
+      object-fit: cover;
+    }
+
+    .about-text {
+      flex: 1;              /* Take remaining space */
+      min-width: 200px;     /* Ensure readability on small screens */
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
+
+  <!-- Navigation -->
+  <nav class="navbar">
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -17,26 +42,36 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </nav>
 
+  <!-- About Content -->
   <main>
-    <section class="hero">
-      <h1>About Me</h1>
-      <p>
-        I am Christian Galvez, a cybersecurity professional with hands-on experience in penetration testing, 
-        vulnerability assessment, and secure systems training. With certifications like CompTIA Network+ and Security+, 
-        I build projects and labs that demonstrate real-world security concepts while also creating training content 
-        to help others understand them.
-      </p>
-      <p>
-        My goal is to combine technical expertise with effective communication, bridging the gap between security teams 
-        and end-users to reduce risk and strengthen resilience.
-      </p>
-    </section>
+    <div class="about-container">
+      <!-- Headshot Image Goes Here -->
+      <!-- Example: <img src="assets/headshot.jpg" alt="Headshot" class="headshot"> -->
+      <!-- Or using an external link: <img src="https://example.com/headshot.jpg" alt="Headshot" class="headshot"> -->
+      <img src="" alt="Headshot" class="headshot">
+
+      <div class="about-text">
+        <h1>About Me</h1>
+        <p>
+          I am a cybersecurity professional with a strong foundation in network and system security, holding Network+ and Security+ certifications. 
+          I have over 2 years of hands-on experience with penetration testing, VPN deployment, and honeypot monitoring through my homelab projects, 
+          including WireGuard VPN and Cowrie SSH honeypot deployments.
+        </p>
+        <p>
+          In addition to technical skills, I work as an Instructional Designer, creating cybersecurity-aware training for enterprise ERP systems, 
+          helping users understand security best practices.
+        </p>
+        <p>
+          I am passionate about identifying vulnerabilities, securing systems, and sharing knowledge. I continuously expand my expertise in 
+          ethical hacking, compliance, and cloud security.
+        </p>
+      </div>
+    </div>
+
+    <a class="back-link" href="index.html">⬅️ Back to Home</a>
   </main>
 
-  <footer>
-    <p>© 2025 Christian Galvez</p>
-  </footer>
 </body>
 </html>
