@@ -1,13 +1,14 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christian Galvez - Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navbar -->
+
+  <!-- Navigation Bar -->
   <header class="navbar">
     <nav>
       <ul>
@@ -19,41 +20,68 @@
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Welcome to My Cybersecurity Portfolio</h1>
-      <p>Explore my projects, labs, and certifications.</p>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Christian Galvez</h1>
+      <p>Hands-on Cybersecurity Projects and Labs</p>
+      <a href="projects.html" class="btn">View My Projects</a>
+    </div>
+  </section>
 
-  <section class="projects">
-  <div class="project-card">
-    <a href="projects/cowrie-honeypot.html">
-      <div class="thumbnail-wrapper">
-        <img src="assets/honeypot-thumbnail.png" alt="Honeypot Project" class="thumbnail">
-        <img src="assets/shield.png" alt="Project Icon" class="icon">
+  <!-- Intro Section -->
+  <section class="intro">
+    <h2>Welcome</h2>
+    <p>
+      I’m a cybersecurity professional with a background in IT support and instructional design. 
+      I build and document hands-on labs showcasing network defense, secure access, and threat detection.
+    </p>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="featured-projects">
+    <h2>Featured Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <div class="thumbnail-wrapper">
+          <img src="assets/honeypot-thumbnail.png" alt="Cowrie Honeypot" class="thumbnail">
+          <img src="assets/icon.png" alt="Project Icon" class="icon">
+        </div>
+        <h3>Cowrie SSH Honeypot</h3>
+        <p>Captured brute-force attempts and attacker behavior in a secure DigitalOcean environment.</p>
+        <a href="honeypot.html" class="btn">Read More</a>
       </div>
-      <p>Honeypot Project</p>
-    </a>
-  </div>
 
-  <div class="project-card">
-    <a href="projects/wireguard-vpn.html">
-      <div class="thumbnail-wrapper">
-        <img src="assets/Wireguard-thumbnail.png" alt="Wireguard VPN Project" class="thumbnail">
-        <img src="assets/terminal.png" alt="Project Icon" class="icon">
+      <div class="project-card">
+        <div class="thumbnail-wrapper">
+          <img src="assets/wireguard-thumbnail.png" alt="WireGuard VPN" class="thumbnail">
+          <img src="assets/icon.png" alt="Project Icon" class="icon">
+        </div>
+        <h3>WireGuard VPN</h3>
+        <p>Configured a secure VPN server for encrypted traffic and remote access across devices.</p>
+        <a href="wireguard.html" class="btn">Read More</a>
       </div>
-      <p>Wireguard VPN Project</p>
-    </a>
-  </div>
-</section>
+    </div>
+  </section>
 
+  <!-- Skills Section -->
+  <section class="skills">
+    <h2>Skills & Certifications</h2>
+    <ul>
+      <li>CompTIA Network+</li>
+      <li>CompTIA Security+</li>
+      <li>Microsoft Azure Fundamentals (AZ-900)</li>
+    </ul>
+  </section>
 
-    </section>
-  </main>
-
+  <!-- Footer -->
   <footer>
     <p>© 2025 Christian Galvez</p>
+    <p>
+      <a href="https://github.com/christian-galvez" target="_blank">GitHub</a> | 
+      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
+    </p>
   </footer>
+
 </body>
 </html>
-
