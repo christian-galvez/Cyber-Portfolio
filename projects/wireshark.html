@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wireshark Analysis - Christian Galvez</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    main { max-width:900px; margin:30px auto; padding:0 20px; }
+    pre { background:#f3f4f6; padding:12px; overflow:auto; border-radius:6px; }
+    code.inline { background:#eef; padding:2px 4px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Wireshark Traffic Analysis</h1>
+      <p><strong>Summary:</strong> Network traffic analysis lab: identify anomalies and suspicious flows using Wireshark and tshark. Includes example filters, rule suggestions, and reproduction commands.</p>
+    </section>
+
+    <section>
+      <h2>Context and objective</h2>
+      <p>Class assignment: analyze WiFi traffic captures to locate anomalies and suspicious packet patterns. Objective here: demonstrate methodology and detection rules even if original class screenshots are unavailable.</p>
+    </section>
+
+    <section>
+      <h2>Dataset</h2>
+      <p>If you have the original PCAP, upload it to <code>/assets/wireshark_original.pcap</code>. If not, I recommend uploading a small substitute PCAP such as <code>sample-http-small.pcap</code> and naming it <code>assets/wireshark_sample.pcap</code>.</p>
+    </section>
+
+    <section>
+      <h2>Commands and filters (reproduce)</h2>
+      <pre><code># Capture example (on Linux)
+sudo tcpdump -i wlan0 -w wireshark_capture.pcap
+
+# Display HTTP requests with tshark
+tshark -r wireshark_capture.pcap -Y "http.request" -T fields -e frame.number -e ip.src -e ip.dst -e http.request.method -e http.host -e http.user_agent
+
+# Example Wireshark display filters
+http.request
+tcp.flags.reset == 1
+dns.qry.name contains "suspiciousdomain"
+eth.addr == aa:bb:cc:dd:ee:ff
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Example anomaly (text-based)</h2>
+      <p>Without screenshots, provide a textual packet dissection for the anomalous frame. Example:</p>
+      <pre><code>Frame 123: 0.123456s 192.168.1.5 -> 93.184.216.34 HTTP 512 POST /upload.php
+  Host: example.com
+  User-Agent: curl/7.68.0
+  Content-Length: 2048
+  Payload: [binary blob, possible exfiltration]
+</code></pre>
+      <p>This can be reproduced by opening the PCAP in Wireshark and using the filter <code class="inline">frame.number == 123</code>.</p>
+    </section>
+
+    <section>
+      <h2>Detection rules</h2>
+      <p>Suggested Suricata rule for suspicious uploads:</p>
+      <pre><code>alert http any any -> any any (msg:"HTTP suspicious upload"; content:"POST /upload.php"; http_method; sid:1000001; rev:1; classtype:trojan-activity;)</code></pre>
+
+      <p>Zeek/Bro script concept: raise notice when HTTP POSTs exceed a threshold or content length unusually large for client.</p>
+    </section>
+
+    <section>
+      <h2>Artifacts and how to add screenshots</h2>
+      <ul>
+        <li><a href="../assets/wireshark_sample.pcap" target="_blank">Sample PCAP (upload to assets)</a></li>
+        <li><a href="../assets/wireshark_filters.txt" target="_blank">tshark/tcpdump commands (upload)</a></li>
+      </ul>
+      <p>If you can no longer access the original class screenshots, recreate the capture quickly on your homelab using <code>curl</code> or <code>nc</code> traffic, then capture with <code>tcpdump</code> and produce screenshots from the new PCAP. Upload screenshots to <code>/assets</code> and link them here.</p>
+    </section>
+
+    <section>
+      <h2>TL;DR</h2>
+      <ul>
+        <li>Methodology-centered writeup: dataset, filters, anomalies, detection rules</li>
+        <li>Reproducible commands and downloadable PCAPs included</li>
+        <li>Suitable for interviews: you can demonstrate live analysis with your homelab</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Christian Galvez</p>
+  </footer>
+</body>
+</html>
