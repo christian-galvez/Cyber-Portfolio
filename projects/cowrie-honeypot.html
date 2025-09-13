@@ -11,7 +11,24 @@
       background-color: #f9f9f9;
       color: #333;
       margin: 0;
-      padding: 0 20px;
+      padding: 0;
+    }
+    nav {
+      background-color: #1a3c6e; /* Navy Blue */
+      color: #fff;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     header, main {
       max-width: 900px;
@@ -43,6 +60,15 @@
   </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Page Content -->
   <header>
     <h1>🕵️‍♂️ Cowrie SSH Honeypot on DigitalOcean</h1>
     <h3>Overview</h3>
@@ -88,7 +114,7 @@
       This provides both educational insight into real-world attack behavior and data I can use for further analysis projects.
     </p>
 
-    <a class="back-link" href="writeups.html">⬅️ Back to Writeups</a>
+    <a class="back-link" href="projects.html">⬅️ Back to Projects</a>
   </main>
 </body>
 </html>
