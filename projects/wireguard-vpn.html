@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WireGuard VPN Setup - Christian Galvez</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    main { max-width:900px; margin:30px auto; padding:0 20px; }
+    pre { background:#f3f4f6; padding:12px; overflow:auto; border-radius:6px; }
+    .artifact-list a { color:#003366; }
+    .note { color:#555; font-style:italic; margin-top:6px; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>WireGuard VPN: Home Lab Setup</h1>
+      <p><strong>One-line summary:</strong> Secure, lightweight VPN using WireGuard for remote access to homelab resources and secure tunnel testing.</p>
+    </section>
+
+    <section>
+      <p class="meta"><strong>Role:</strong> Network engineer / lab admin &nbsp; | &nbsp; <strong>Tools:</strong> WireGuard, Ubuntu 22.04, systemd, iptables/nftables, systemd-resolved, public host (optional)</p>
+    </section>
+
+    <section>
+      <h2>Objective</h2>
+      <p>Implement WireGuard server to provide secure remote access to homelab VMs, test routing rules, and document configuration for repeatable deployments.</p>
+    </section>
+
+    <section>
+      <h2>Topology</h2>
+      <pre>
+Public host (cloud or home router) -- (UDP 51820) --> WireGuard server (10.9.0.1)
+Client device(s) (10.9.0.2+) --> WireGuard tunnel --> access homelab networks (e.g., 192.168.56.0/24)
+      </pre>
+      <p class="note">Use NAT + firewall rules to control access between tunnel and lab networks. Keep management services separate.</p>
+    </section>
+
+    <section>
+      <h2>Installation & config (server)</h2>
+      <ol>
+        <li>Install WireGuard:
+          <pre><code>sudo apt update
+sudo apt install -y wireguard iptables</code></pre>
+        </li>
+        <li>Generate keys:
+          <pre><code>wg genkey | tee server_private.key | wg pubkey > server_public.key
+wg genkey | tee client_private.key | wg pubkey > client_public.key</code></pre>
+        </li>
+        <li>Create `/etc/wireguard/wg0.conf` (example):
+          <pre><code>[Interface]
+Address = 10.9.0.1/24
+ListenPort = 51820
+PrivateKey = <server_private_key>
+SaveConfig = true
+
+[Peer]
+PublicKey = <client_public_key>
+AllowedIPs = 10.9.0.2/32, 192.168.56.0/24
+</code></pre>
+        </li>
+        <li>Enable IP forwarding and start WireGuard:
+          <pre><code>sudo sysctl -w net.ipv4.ip_forward=1
+sudo systemctl enable wg-quick@wg0
+sudo systemctl start wg-quick@wg0</code></pre>
+        </li>
+        <li>Firewall NAT (example using iptables):
+          <pre><code>sudo iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -o eth0 -j MASQUERADE</code></pre>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Client config (sample)</h2>
+      <pre><code>[Interface]
+PrivateKey = <client_private_key>
+Address = 10.9.0.2/32
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = <server_public_key>
+Endpoint = public.host.example:51820
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25
+</code></pre>
+      <p class="note">Adjust `AllowedIPs` to limit routes to the lab subnets if you do not want full-tunnel VPN.</p>
+    </section>
+
+    <section>
+      <h2>Verification & testing</h2>
+      <ol>
+        <li>Check interface: <pre><code>sudo wg show</code></pre></li>
+        <li>Test connectivity: <pre><code>ping 10.9.0.1
+ping 192.168.56.10</code></pre></li>
+        <li>Confirm routing and access to lab services (SSH, web interfaces) from client.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Common issues & troubleshooting</h2>
+      <ul>
+        <li>Endpoint or NAT issues: ensure UDP 51820 forwarded if behind home router</li>
+        <li>Firewall rules blocking traffic: verify iptables/nftables rules</li>
+        <li>Key mismatch: confirm public/private keys are correct and no extra whitespace</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul class="artifact-list">
+        <li><a href="../assets/wg0.conf" target="_blank">Example wg0.conf (upload)</a></li>
+        <li><a href="../assets/wireguard-setup-notes.txt" target="_blank">Setup notes (txt)</a></li>
+      </ul>
+      <p>Upload these files into <code>/assets</code> and make sure names match the links above or update them.</p>
+    </section>
+
+    <section>
+      <h2>TL;DR</h2>
+      <ul>
+        <li>Implemented WireGuard for secure homelab access with documented server and client configs.</li>
+        <li>Includes troubleshooting notes and artifacts for repeatable setup.</li>
+        <li>Configured routing and NAT to enable safe access to isolated lab networks.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Christian Galvez</p>
+  </footer>
+</body>
+</html>
