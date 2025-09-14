@@ -28,14 +28,29 @@ img {
 
 /* ---------------------- Navbar ---------------------- */
 /* Navbar */
+/* Navbar */
 .navbar {
   display: flex;
-  justify-content: space-between; /* pushes title left, links right */
+  justify-content: space-between;
   align-items: center;
   background-color: #001f3f; /* Navy blue */
-  padding: 0.75rem 2rem; /* space inside */
-  width: 100%; /* full width */
+  padding: 0.75rem 2rem;
+  width: 100%;
   box-sizing: border-box;
+  position: sticky;   /* makes it stick at the top */
+  top: 0;
+  z-index: 1000;      /* keeps it above other elements */
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* space between logo and title */
+}
+
+.logo {
+  height: 40px;   /* adjust size as needed */
+  width: auto;
 }
 
 .site-title {
