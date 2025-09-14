@@ -190,3 +190,12 @@ img {
 .hero .btn:hover {
     background-color: #1b6ca8;
 }
+
+/* Navbar logo */
+.logo {
+  height: 40px;
+  width: auto;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
