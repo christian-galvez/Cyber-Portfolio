@@ -28,35 +28,35 @@ img {
 
 /* ---------------------- Navbar ---------------------- */
 .navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: #003366; /* Navy Blue */
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.navbar nav ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
+  background-color: #003366; /* adjust to match your theme */
   padding: 10px 20px;
-  justify-content: flex-start;
 }
 
-.navbar nav ul li {
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;   /* adjust size */
   margin-right: 20px;
 }
 
-.navbar nav ul li a {
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;   /* spacing between menu items */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
 
-.navbar nav ul li a:hover {
-  background-color: #00509e; /* lighter navy blue */
-  border-radius: 4px;
+.nav-links a:hover {
   text-decoration: underline;
 }
 
