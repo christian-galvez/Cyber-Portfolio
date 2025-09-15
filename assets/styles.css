@@ -220,17 +220,17 @@ img {
 .hero h1 {
     font-size: 3em;
     margin: 0;
-    color: #ffffff; /* bright white for your name */
+    color: #001f3f; /* bright white for your name */
 }
 
 .hero p {
     font-size: 1.3em;
     margin: 20px 0;
-    color: #dbeafe; /* softer so it doesn’t overpower */
+    color: #004080; /* softer so it doesn’t overpower */
 }
 
 .hero .btn {
-    background-color: #f5f5f5;
+    background-color: #001f3f;
     color: white;
     padding: 12px 25px;
     border-radius: 5px;
